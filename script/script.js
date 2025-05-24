@@ -1,4 +1,7 @@
+import { getLocalStorage } from "./function.js";
+
 const listEvent = document.getElementById("listEvent");
+const listFav = document.getElementById("listFav");
 
 const fetchData = fetch(
   "https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events"
@@ -71,6 +74,8 @@ const fetchData = fetch(
           liens: url,
         });
         localStorage.setItem("favData", JSON.stringify(storedData));
+        getLocalStorage(listFav);
       });
     });
+    getLocalStorage(listFav);
   });
