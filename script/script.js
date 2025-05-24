@@ -26,30 +26,51 @@ const fetchData = fetch(
       const divTitleCard = document.createElement("div");
       const titleCard = document.createElement("h3");
       const divInfo = document.createElement("div");
+      const description = document.createElement("p");
       const divDate = document.createElement("div");
       const divPlace = document.createElement("div");
+      const link = document.createElement("a");
       const divBtn = document.createElement("div");
       const detailBtn = document.createElement("button");
       const addBtn = document.createElement("button");
       divCard.className = "card";
       divTitleCard.className = "card-title";
       divInfo.className = "info";
+      description.className = "descr";
+      link.className = "url";
       divBtn.className = "button-card";
       detailBtn.className = "detail";
       addBtn.className = "add";
       titleCard.textContent = title;
-      divDate.textContent = date;
-      divPlace.textContent = place;
+      description.textContent = descr;
+      divDate.textContent = `Date : ${date}`;
+      divPlace.textContent = `Lieux ${place}`;
+      link.href = url;
+      link.textContent = "Liens vers l'événement";
       addBtn.textContent = "Ajouter";
       detailBtn.textContent = "Détails";
       listEvent?.appendChild(divCard);
       divCard.appendChild(divTitleCard);
       divTitleCard.appendChild(titleCard);
       divCard.appendChild(divInfo);
+      divInfo.appendChild(description);
       divInfo.appendChild(divDate);
       divInfo.appendChild(divPlace);
+      divInfo.appendChild(link);
       divCard.appendChild(divBtn);
       divBtn.appendChild(detailBtn);
       divBtn.appendChild(addBtn);
+
+      addBtn.addEventListener("click", () => {
+        let storedData = JSON.parse(localStorage.getItem("favData")) || [];
+        storedData.push({
+          titre: title,
+          description: descr,
+          horaire: date,
+          lieux: place,
+          liens: url,
+        });
+        localStorage.setItem("favData", JSON.stringify(storedData));
+      });
     });
   });

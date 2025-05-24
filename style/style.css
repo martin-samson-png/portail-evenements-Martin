@@ -144,3 +144,8 @@ h3 {
   background-color: #dd9520;
   cursor: pointer;
 }
+
+.descr,
+.url {
+  display: none;
+}
