@@ -1,7 +1,16 @@
 :root {
   --main-color: #4ecdc4;
   --second-color: #f5a623;
-  --third-color: #ffe66d;
-  --light-mode: #f7fff7;
-  --dark-mode: #292f36;
+  --third-color: #f0f9ff;
+  --theme: #f7fff7;
+  --font-color: #000000;
+}
+
+.dark-mode {
+  --theme: #292f36;
+  --font-color: #ffffff;
+  --main-color: #2a9d8f;
+  --third-color: #3a4049;
+  --second-color: #e76f51;
+  --third-color: #e9c46a;
 }

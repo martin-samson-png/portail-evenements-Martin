@@ -1,12 +1,4 @@
-// function.js
 export function getLocalStorage(listFav) {
-  if (!listFav) {
-    console.error("ERREUR : listFav est undefined !");
-    return;
-  }
-
-  listFav.innerHTML = "";
-
   let storedData = JSON.parse(localStorage.getItem("favData")) || [];
 
   storedData.forEach((data, index) => {

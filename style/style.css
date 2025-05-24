@@ -12,8 +12,8 @@ html {
 }
 
 body {
-  background-color: var(--light-mode);
-  padding: 0%;
+  background-color: var(--theme);
+  padding: 0 0 10% 0;
   margin: 0%;
   font-family: Lexend Deca;
 }
@@ -25,7 +25,7 @@ a {
 }
 
 a:hover {
-  color: red;
+  color: #116466;
   font-size: 1.2rem;
 }
 
@@ -50,6 +50,15 @@ nav {
   justify-content: space-evenly;
   align-items: center;
   width: 40%;
+}
+
+nav button {
+  border: none;
+  background-color: var(--main-color);
+}
+
+.fa-circle-half-stroke {
+  font-size: 25px;
 }
 /* -----------------------------------MAIN----------------------------------- */
 .title {
@@ -81,7 +90,7 @@ h2 {
 .card {
   border: 1px solid lightgray;
   border-radius: 15px;
-  background-color: aliceblue;
+  background-color: var(--third-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,8 +103,8 @@ h2 {
 }
 
 .card:hover {
-  max-height: 20rem;
-  min-height: 12rem;
+  max-height: 100rem;
+  min-height: 1rem;
   transform: translateY(-1rem);
 }
 
@@ -122,8 +131,8 @@ h3 {
 
 .button-card {
   display: flex;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.5rem;
+  padding: 1.5rem;
 }
 
 .detail {
@@ -157,4 +166,68 @@ h3 {
 .descr,
 .url {
   display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .logo {
+    width: 80%;
+  }
+
+  nav {
+    width: 20%;
+  }
+
+  span {
+    display: none;
+  }
+
+  #listEvent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  #listFav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .card {
+    min-width: 50%;
+    min-height: 7rem;
+  }
+
+  .button-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail,
+  .add {
+    width: 10rem;
+    height: 3rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .card {
+    min-width: 40%;
+  }
+
+  span {
+    display: none;
+  }
+
+  .logo {
+    width: 80%;
+  }
+
+  nav {
+    width: 20%;
+  }
 }
