@@ -2,6 +2,7 @@ import { getLocalStorage } from "./function.js";
 
 const listEvent = document.getElementById("listEvent");
 const listFav = document.getElementById("listFav");
+const modale = document.getElementById("modale");
 
 const fetchData = fetch(
   "https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events"
@@ -47,7 +48,7 @@ const fetchData = fetch(
       titleCard.textContent = title;
       description.textContent = descr;
       divDate.textContent = `Date : ${date}`;
-      divPlace.textContent = `Lieux ${place}`;
+      divPlace.textContent = place;
       link.href = url;
       link.textContent = "Liens vers l'événement";
       addBtn.textContent = "Ajouter";
@@ -76,6 +77,10 @@ const fetchData = fetch(
         localStorage.setItem("favData", JSON.stringify(storedData));
         getLocalStorage(listFav);
       });
+
+      detailBtn.dataset.title = title;
+
+      detailBtn.addEventListener;
     });
     getLocalStorage(listFav);
   });
