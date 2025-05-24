@@ -1,3 +1,30 @@
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  padding: 0%;
+  margin: 0%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5% 0 5%;
+}
+
+.logo {
+  background-color: aliceblue;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 60%;
+}
+
+nav {
+  background-color: aqua;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 40%;
+}
