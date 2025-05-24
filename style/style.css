@@ -4,7 +4,7 @@
 @font-face {
   font-family: "Lexend Deca";
   src: local("Lexend Deca"),
-    url(../font/Lexend_Deca/LexendDeca-VariableFont_wght.ttf) format(TrueType);
+    url(../Lexend_Deca/LexendDeca-VariableFont_wght.ttf) format(TrueType);
 }
 
 html {
@@ -80,26 +80,14 @@ h2 {
   padding: 1.5rem;
   transition: transform 0.3s ease;
   overflow: hidden;
-  max-height: 6rem;
+  max-height: 8rem;
   max-width: 40%;
   min-width: 40%;
 }
 
 .card:hover {
   max-height: 15rem;
-  cursor: pointer;
-  transform: translateY(-6px);
-}
-
-.card-extra {
-  opacity: 0;
-  transform: translateY(1rem);
-  display: flex;
-}
-
-.card:hover .card-extra {
-  opacity: 1;
-  transform: translateY(0);
+  transform: translateY(-1rem);
 }
 
 .card-title {
@@ -123,7 +111,7 @@ h3 {
   gap: 1.5rem;
 }
 
-.buttonCard {
+.button-card {
   display: flex;
   gap: 1rem;
   padding: 1rem;
@@ -140,6 +128,7 @@ h3 {
 
 .detail:hover {
   background-color: #46b9b0;
+  cursor: pointer;
 }
 
 .add {
@@ -153,4 +142,5 @@ h3 {
 
 .add:hover {
   background-color: #dd9520;
+  cursor: pointer;
 }
