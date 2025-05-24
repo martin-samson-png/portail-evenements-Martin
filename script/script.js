@@ -1,8 +1,9 @@
-import { getLocalStorage } from "./function.js";
+import { getLocalStorage, createEventCard } from "./function.js";
 
-const listEvent = document.getElementById("listEvent");
-const listFav = document.getElementById("listFav");
-const modale = document.getElementById("modale");
+const globalData = {
+  listEvent: document.getElementById("listEvent"),
+  modale: document.getElementById("modale"),
+};
 
 const fetchData = fetch(
   "https://demo.theeventscalendar.com/wp-json/tribe/events/v1/events"
@@ -26,61 +27,14 @@ const fetchData = fetch(
       }
       const url = event.url;
 
-      const divCard = document.createElement("div");
-      const divTitleCard = document.createElement("div");
-      const titleCard = document.createElement("h3");
-      const divInfo = document.createElement("div");
-      const description = document.createElement("p");
-      const divDate = document.createElement("div");
-      const divPlace = document.createElement("div");
-      const link = document.createElement("a");
-      const divBtn = document.createElement("div");
-      const detailBtn = document.createElement("button");
-      const addBtn = document.createElement("button");
-      divCard.className = "card";
-      divTitleCard.className = "card-title";
-      divInfo.className = "info";
-      description.className = "descr";
-      link.className = "url";
-      divBtn.className = "button-card";
-      detailBtn.className = "detail";
-      addBtn.className = "add";
-      titleCard.textContent = title;
-      description.textContent = descr;
-      divDate.textContent = `Date : ${date}`;
-      divPlace.textContent = place;
-      link.href = url;
-      link.textContent = "Liens vers l'événement";
-      addBtn.textContent = "Ajouter";
-      detailBtn.textContent = "Détails";
-      listEvent?.appendChild(divCard);
-      divCard.appendChild(divTitleCard);
-      divTitleCard.appendChild(titleCard);
-      divCard.appendChild(divInfo);
-      divInfo.appendChild(description);
-      divInfo.appendChild(divDate);
-      divInfo.appendChild(divPlace);
-      divInfo.appendChild(link);
-      divCard.appendChild(divBtn);
-      divBtn.appendChild(detailBtn);
-      divBtn.appendChild(addBtn);
-
-      addBtn.addEventListener("click", () => {
-        let storedData = JSON.parse(localStorage.getItem("favData")) || [];
-        storedData.push({
-          titre: title,
-          description: descr,
-          horaire: date,
-          lieux: place,
-          liens: url,
-        });
-        localStorage.setItem("favData", JSON.stringify(storedData));
-        getLocalStorage(listFav);
-      });
-
-      detailBtn.dataset.title = title;
-
-      detailBtn.addEventListener;
+      createEventCard(
+        title,
+        descr,
+        date,
+        place,
+        url,
+        "Ajouter",
+        globalData.listEvent
+      );
     });
-    getLocalStorage(listFav);
   });

@@ -1,27 +1,30 @@
-const modale = document.getElementById("modale");
-const template = document.getElementById("modaleTemplate");
-const cloneModale = document.getElementById("cloneModale");
-const listFav = document.getElementById("listFav");
+const globalData = {
+  storedData: [],
+  listFav: document.getElementById("listFav"),
+  modale: document.getElementById("modale"),
+  template: document.getElementById("modaleTemplate"),
+  cloneModale: document.getElementById("cloneModale"),
+};
 
 export function openModal(title, desc, date, place, url) {
-  const cardTemplate = template.content.cloneNode(true);
+  const cardTemplate = globalData.template.content.cloneNode(true);
   cardTemplate.querySelector(".h3-title").textContent = title;
   cardTemplate.querySelector(".description").textContent = desc;
   cardTemplate.querySelector(".date").textContent = date;
   cardTemplate.querySelector(".place").textContent = place;
   cardTemplate.querySelector(".url").href = url;
-  modale.style.display = "flex";
+  globalData.modale.style.display = "flex";
 
   const closeBtn = cardTemplate.querySelector(".close-btn");
-  cloneModale?.appendChild(cardTemplate);
+  globalData.cloneModale.appendChild(cardTemplate);
 
   closeBtn.addEventListener("click", () => {
-    modale.style.display = "none";
+    globalData.modale.style.display = "none";
     closeBtn.closest(".card").remove();
   });
 }
 
-export function createEventCard({
+export function createEventCard(
   title,
   descr,
   date,
@@ -29,7 +32,8 @@ export function createEventCard({
   url,
   actionClass,
   section,
-}) {
+  index
+) {
   const divCard = document.createElement("div");
   const divTitleCard = document.createElement("div");
   const titleCard = document.createElement("h3");
@@ -49,7 +53,7 @@ export function createEventCard({
   link.className = "url";
   divBtn.className = "button-card";
   detailBtn.className = "detail";
-  actionBtn.className = actionClass;
+  actionBtn.className = "add";
 
   titleCard.textContent = title;
   description.textContent = descr;
@@ -59,6 +63,12 @@ export function createEventCard({
   link.textContent = "Lien vers l'événement";
   detailBtn.textContent = "Détails";
   actionBtn.textContent = actionClass;
+
+  detailBtn.dataset.title = title;
+  detailBtn.dataset.descr = descr;
+  detailBtn.dataset.date = date;
+  detailBtn.dataset.place = place;
+  detailBtn.dataset.url = url;
 
   section.appendChild(divCard);
   divCard.appendChild(divTitleCard);
@@ -85,24 +95,63 @@ export function createEventCard({
 
   actionBtn.addEventListener("click", () => {
     if (actionBtn.textContent === "Supprimer") {
-      storedData.splice(index, 1);
+      if (typeof index === "number") {
+        globalData.storedData.splice(index, 1);
+        localStorage.setItem("favData", JSON.stringify(globalData.storedData));
+        globalData.listFav.removeChild(divCard);
+      } else {
+        console.warn("Impossible de supprimer : index non défini");
+      }
+    } else if (actionBtn.textContent === "Ajouter") {
+      let storedData = JSON.parse(localStorage.getItem("favData")) || [];
+
+      const newEvent = { title, descr, date, place, url };
+      storedData.push(newEvent);
       localStorage.setItem("favData", JSON.stringify(storedData));
-      listFav.removeChild(favDivCard);
+      globalData.storedData = storedData;
+
+      // Ajoute immédiatement dans les favoris
+      createEventCard(
+        title,
+        descr,
+        date,
+        place,
+        url,
+        "Supprimer",
+        globalData.listFav,
+        storedData.length - 1
+      );
     }
   });
+
   return divCard;
 }
-export function getLocalStorage(l) {
-  let storedData = JSON.parse(localStorage.getItem("favData")) || [];
+
+export function getLocalStorage() {
+  let storedData;
+  try {
+    storedData = JSON.parse(localStorage.getItem("favData")) || [];
+  } catch (error) {
+    console.error("Erreur:", error);
+    storedData = [];
+  }
+
+  globalData.storedData = storedData;
+
   storedData.forEach((data, index) => {
-    createEventCard(
-      data.title,
-      data.description,
-      data.date,
-      data.place,
-      data.url,
-      "Supprimer",
-      listFav
-    );
+    if (data.title && data.descr && data.date && data.place && data.url) {
+      createEventCard(
+        data.title,
+        data.descr,
+        data.date,
+        data.place,
+        data.url,
+        "Supprimer",
+        globalData.listFav,
+        index
+      );
+    } else {
+      console.error(index);
+    }
   });
 }
