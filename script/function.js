@@ -64,6 +64,20 @@ export function createEventCard(
   detailBtn.textContent = "Détails";
   actionBtn.textContent = actionClass;
 
+  titleCard.setAttribute("aria-label", `Titre de l'événements : ${title}`);
+  description.setAttribute("aria-label", `Description : ${descr}`);
+  divDate.setAttribute("aria-label", `Date de l'événement : ${date}`);
+  divPlace.setAttribute("aria-label", `${place}`);
+  link.setAttribute("aria-label", `Lien vers le site de l'événement`);
+  detailBtn.setAttribute(
+    "aria-label",
+    `Voir les détails de l'événement ${title}`
+  );
+  if (actionClass === "Ajouter") {
+    actionBtn.setAttribute("aria-label", `Ajouter ${title} aux favoris`);
+  } else if (actionClass === "Supprimer") {
+    actionBtn.setAttribute("aria-label", `Supprimer ${title} des favoris`);
+  }
   detailBtn.dataset.title = title;
   detailBtn.dataset.descr = descr;
   detailBtn.dataset.date = date;
