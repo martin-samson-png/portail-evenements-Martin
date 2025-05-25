@@ -1,20 +1,44 @@
+@import url(_variables.css);
+
+/* ----------------------------------- FONT ----------------------------------- */
+@font-face {
+  font-family: "Lexend Deca";
+  src: local("Lexend Deca"),
+    url(../Lexend_Deca/LexendDeca-VariableFont_wght.ttf) format(TrueType);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  padding: 0%;
+  background-color: var(--theme);
+  padding: 0 0 10% 0;
   margin: 0%;
+  font-family: Lexend Deca;
 }
 
+a {
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #116466;
+  font-size: 1.2rem;
+}
+
+/* -----------------------------------HEADER----------------------------------- */
+
 header {
+  background-color: var(--main-color);
   display: flex;
   justify-content: space-between;
   padding: 0 5% 0 5%;
 }
 
 .logo {
-  background-color: aliceblue;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -22,9 +46,235 @@ header {
 }
 
 nav {
-  background-color: aqua;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 40%;
+}
+
+nav button {
+  border: none;
+  background-color: var(--main-color);
+}
+
+nav button:hover {
+  cursor: pointer;
+}
+
+.fa-circle-half-stroke {
+  font-size: 25px;
+}
+/* -----------------------------------MAIN----------------------------------- */
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 28px;
+  color: var(--second-color);
+}
+
+#listEvent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 3rem;
+}
+
+#listFav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 3rem;
+}
+
+.card {
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  background-color: var(--third-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  max-height: 7rem;
+  max-width: 25%;
+  min-width: 25%;
+}
+
+.card:hover {
+  max-height: 100rem;
+  min-height: 1rem;
+  transform: translateY(-1rem);
+}
+
+.card-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: var(--main-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+h3 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  gap: 2.5rem;
+}
+
+.button-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.detail {
+  background-color: var(--main-color);
+  font-size: 18px;
+  border: none;
+  border-radius: 3px;
+  width: 7rem;
+  height: 2rem;
+}
+
+.detail:hover {
+  background-color: #46b9b0;
+  cursor: pointer;
+}
+
+.add {
+  background-color: var(--second-color);
+  font-size: 18px;
+  border: none;
+  border-radius: 3px;
+  width: 7rem;
+  height: 2rem;
+}
+
+.add:hover {
+  background-color: #dd9520;
+  cursor: pointer;
+}
+
+.descr,
+.url {
+  display: none;
+}
+
+#modale {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+#cloneModale {
+  width: 70%;
+}
+
+#cloneModale {
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  background-color: var(--third-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15%;
+  background-color: var(--third-color);
+  border: none;
+}
+
+.fa-rectangle-xmark {
+  font-size: 28px;
+}
+
+.close-btn :hover {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .logo {
+    width: 80%;
+  }
+
+  nav {
+    width: 20%;
+  }
+
+  span {
+    display: none;
+  }
+
+  #listEvent {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  #listFav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .card {
+    min-width: 50%;
+    min-height: 7rem;
+  }
+
+  .button-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail,
+  .add {
+    width: 10rem;
+    height: 3rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .card {
+    min-width: 40%;
+  }
+
+  span {
+    display: none;
+  }
+
+  .logo {
+    width: 80%;
+  }
+
+  nav {
+    width: 20%;
+  }
 }
