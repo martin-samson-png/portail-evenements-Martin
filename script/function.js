@@ -12,7 +12,7 @@ export function openModal(title, desc, date, place, url) {
   cardTemplate.querySelector(".description").textContent = desc;
   cardTemplate.querySelector(".date").textContent = date;
   cardTemplate.querySelector(".place").textContent = place;
-  cardTemplate.querySelector(".url").href = url;
+  cardTemplate.querySelector(".liens  ").href = url;
   globalData.modale.style.display = "flex";
 
   const closeBtn = cardTemplate.querySelector(".close-btn");
@@ -20,7 +20,7 @@ export function openModal(title, desc, date, place, url) {
 
   closeBtn.addEventListener("click", () => {
     globalData.modale.style.display = "none";
-    closeBtn.closest(".card").remove();
+    closeBtn.closest(".cardModale").remove();
   });
 }
 

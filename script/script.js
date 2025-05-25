@@ -17,7 +17,7 @@ const fetchData = fetch(
   .then((data) => {
     data.events.forEach((event) => {
       const title = event.title;
-      const descr = event.description;
+      const descr = event.description.replace(/<p>|<\/p>/g, "");
       const date = event.date;
       let place;
       if (event.venue.address) {
@@ -26,6 +26,8 @@ const fetchData = fetch(
         place = `Pas d'adresse disponible`;
       }
       const url = event.url;
+
+      console.log(descr);
 
       createEventCard(
         title,
