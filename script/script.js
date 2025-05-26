@@ -27,8 +27,6 @@ const fetchData = fetch(
       }
       const url = event.url;
 
-      console.log(descr);
-
       createEventCard(
         title,
         descr,
@@ -39,4 +37,5 @@ const fetchData = fetch(
         globalData.listEvent
       );
     });
+    getLocalStorage();
   });

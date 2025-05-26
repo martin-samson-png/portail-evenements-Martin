@@ -125,16 +125,7 @@ export function createEventCard(
       globalData.storedData = storedData;
 
       // Ajoute immédiatement dans les favoris
-      createEventCard(
-        title,
-        descr,
-        date,
-        place,
-        url,
-        "Supprimer",
-        globalData.listFav,
-        storedData.length - 1
-      );
+      getLocalStorage();
     }
   });
 

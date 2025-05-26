@@ -77,7 +77,6 @@ h2 {
 
 #listEvent {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 3rem;
@@ -85,7 +84,6 @@ h2 {
 
 #listFav {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 3rem;
