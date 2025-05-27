@@ -97,7 +97,14 @@ export function createEventCard(
   divBtn.appendChild(actionBtn);
 
   detailBtn.addEventListener("click", (e) => {
-    const dataFn = e.currentTarget.dataset;
+    //target = currentTarget e.target	Ce que l’utilisateur a cliqué (précis) e.currentTarget	L’élément sur lequel le addEventListener est attaché
+
+    const dataFn = e.target.dataset;
+    console.log(
+      "data-title (via currentTarget):",
+      e.currentTarget.dataset.descr
+    );
+    console.log("data-title (via target):", e.target.dataset.descr);
     openModal(
       dataFn.title,
       dataFn.descr,
